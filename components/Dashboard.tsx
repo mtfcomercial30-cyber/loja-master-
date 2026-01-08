@@ -3,9 +3,7 @@ import React from 'react';
 import { 
   TrendingUp, 
   DollarSign, 
-  PackageSearch, 
   AlertTriangle, 
-  Users2, 
   Clock,
   ArrowUpRight,
   ArrowDownRight
@@ -47,14 +45,14 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold text-slate-900">Bem-vindo, {profile?.full_name}</h1>
-        <p className="text-slate-500">Aqui está o resumo operacional da sua loja hoje.</p>
+        <p className="text-slate-500">Aqui está o resumo operacional da sua loja hoje em Kwanzas.</p>
       </div>
 
       {/* Top Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           title="Receita Hoje" 
-          value="R$ 14.502,30" 
+          value="Kz 14.502,30" 
           trend="+12%" 
           trendType="up"
           icon={DollarSign}
@@ -62,7 +60,7 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
         />
         <StatCard 
           title="Lucro Real (Mês)" 
-          value="R$ 42.180,00" 
+          value="Kz 42.180,00" 
           trend="+5.4%" 
           trendType="up"
           icon={TrendingUp}
@@ -107,6 +105,7 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
                 <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
                 <Tooltip 
+                  formatter={(value: any) => [`Kz ${value}`, 'Vendas']}
                   contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}}
                 />
                 <Area type="monotone" dataKey="sales" stroke="#2563eb" strokeWidth={3} fillOpacity={1} fill="url(#colorSales)" />
@@ -132,9 +131,13 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
-                <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{borderRadius: '12px', border: 'none'}} />
-                <Bar dataKey="revenue" fill="#cbd5e1" radius={[4, 4, 0, 0]} barSize={20} />
-                <Bar dataKey="profit" fill="#10b981" radius={[4, 4, 0, 0]} barSize={20} />
+                <Tooltip 
+                  cursor={{fill: '#f8fafc'}} 
+                  formatter={(value: any) => [`Kz ${value}`, 'Valor']}
+                  contentStyle={{borderRadius: '12px', border: 'none'}} 
+                />
+                <Bar dataKey="revenue" name="Receita" fill="#cbd5e1" radius={[4, 4, 0, 0]} barSize={20} />
+                <Bar dataKey="profit" name="Lucro" fill="#10b981" radius={[4, 4, 0, 0]} barSize={20} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -155,7 +158,7 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
             <RiskAlert 
               type="stock" 
               message="Divergência de inventário no setor de Bebidas (Lote #442)" 
-              impact="R$ -1.240,00"
+              impact="Kz -1.240,00"
               severity="high"
             />
             <RiskAlert 
@@ -179,7 +182,7 @@ const Dashboard: React.FC<{ profile: UserProfile | null }> = ({ profile }) => {
               <p className="text-slate-400 mb-6 leading-relaxed">
                 Reprecificar produtos da categoria <span className="text-white font-bold">Hortifruti</span> em 5.2% baseado na variação do fornecedor aumentará sua margem mensal em aproximadamente:
               </p>
-              <div className="text-3xl font-bold text-blue-400 mb-8">R$ 8.420,00</div>
+              <div className="text-3xl font-bold text-blue-400 mb-8">Kz 8.420,00</div>
               <button className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl font-bold transition-all transform active:scale-95">
                 Simular Impacto
               </button>

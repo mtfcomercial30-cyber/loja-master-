@@ -11,11 +11,11 @@ import {
 } from 'lucide-react';
 
 const mockProducts = [
-  { id: '1', barcode: '78910001', name: 'Arroz Agulhinha 5kg', category: 'Grãos', stock: 120, min: 50, cost: 18.50, sale: 29.90 },
-  { id: '2', barcode: '78910002', name: 'Feijão Carioca 1kg', category: 'Grãos', stock: 45, min: 60, cost: 4.20, sale: 8.50 },
-  { id: '3', barcode: '78910003', name: 'Leite Integral 1L', category: 'Laticínios', stock: 200, min: 100, cost: 3.10, sale: 5.80 },
-  { id: '4', barcode: '78910004', name: 'Óleo de Soja 900ml', category: 'Mercearia', stock: 85, min: 40, cost: 6.50, sale: 11.90 },
-  { id: '5', barcode: '78910005', name: 'Detergente Líquido 500ml', category: 'Limpeza', stock: 12, min: 30, cost: 1.20, sale: 2.50 },
+  { id: '1', barcode: '78910001', name: 'Arroz Agulhinha 5kg', category: 'Grãos', stock: 120, min: 50, cost: 1850.50, sale: 2990.90 },
+  { id: '2', barcode: '78910002', name: 'Feijão Carioca 1kg', category: 'Grãos', stock: 45, min: 60, cost: 420.20, sale: 850.50 },
+  { id: '3', barcode: '78910003', name: 'Leite Integral 1L', category: 'Laticínios', stock: 200, min: 100, cost: 310.10, sale: 580.80 },
+  { id: '4', barcode: '78910004', name: 'Óleo de Soja 900ml', category: 'Mercearia', stock: 85, min: 40, cost: 650.50, sale: 1190.90 },
+  { id: '5', barcode: '78910005', name: 'Detergente Líquido 500ml', category: 'Limpeza', stock: 12, min: 30, cost: 120.20, sale: 250.50 },
 ];
 
 const Inventory: React.FC<{ role: string | undefined }> = ({ role }) => {
@@ -66,7 +66,7 @@ const Inventory: React.FC<{ role: string | undefined }> = ({ role }) => {
           </div>
           <div>
             <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Valor Total em Estoque</p>
-            <p className="text-xl font-bold">R$ 384.200</p>
+            <p className="text-xl font-bold">Kz 384.200</p>
           </div>
         </div>
       </div>
@@ -133,8 +133,8 @@ const Inventory: React.FC<{ role: string | undefined }> = ({ role }) => {
                         />
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium">R$ {p.cost.toFixed(2)}</td>
-                    <td className="px-6 py-4 text-sm font-bold">R$ {p.sale.toFixed(2)}</td>
+                    <td className="px-6 py-4 text-sm font-medium">Kz {p.cost.toLocaleString('pt-AO', { minimumFractionDigits: 2 })}</td>
+                    <td className="px-6 py-4 text-sm font-bold">Kz {p.sale.toLocaleString('pt-AO', { minimumFractionDigits: 2 })}</td>
                     <td className="px-6 py-4">
                       <span className={`text-sm font-bold ${Number(margin) > 40 ? 'text-emerald-600' : 'text-slate-600'}`}>
                         {margin}%

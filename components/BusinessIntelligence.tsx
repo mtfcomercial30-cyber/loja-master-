@@ -4,10 +4,9 @@ import {
   Calculator, 
   TrendingUp, 
   TrendingDown, 
-  PieChart, 
   Lightbulb,
   ArrowRight,
-  Info
+  LineChart as LineChartIcon
 } from 'lucide-react';
 import { 
   LineChart, 
@@ -20,12 +19,12 @@ import {
 } from 'recharts';
 
 const projectionData = [
-  { step: 0, profit: 15000 },
-  { step: 1, profit: 16200 },
-  { step: 2, profit: 17800 },
-  { step: 3, profit: 19500 },
-  { step: 4, profit: 18900 },
-  { step: 5, profit: 18200 },
+  { step: 0, profit: 150000 },
+  { step: 1, profit: 162000 },
+  { step: 2, profit: 178000 },
+  { step: 3, profit: 195000 },
+  { step: 4, profit: 189000 },
+  { step: 5, profit: 182000 },
 ];
 
 const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) => {
@@ -96,7 +95,7 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
 
             <div className="p-4 bg-blue-50 rounded-xl space-y-3">
                <p className="text-xs text-blue-800 font-medium">
-                  A simulação utiliza dados históricos de sazonalidade e elasticidade-preço dos últimos 12 meses.
+                  A simulação utiliza dados históricos de sazonalidade e elasticidade-preço dos últimos 12 meses em Angola.
                </p>
                <button className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
                   <Calculator size={18} />
@@ -111,7 +110,7 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
                <div className="bg-white p-6 rounded-2xl border border-slate-200">
                   <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Lucro Projetado (Mês)</p>
                   <div className="flex items-end gap-3">
-                     <h4 className="text-3xl font-bold text-slate-900">R$ 58.420,00</h4>
+                     <h4 className="text-3xl font-bold text-slate-900">Kz 580.420,00</h4>
                      <span className="text-emerald-600 font-bold mb-1 flex items-center text-sm">
                         <TrendingUp size={16} /> +15.2%
                      </span>
@@ -120,7 +119,7 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
                <div className="bg-white p-6 rounded-2xl border border-slate-200">
                   <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Impacto no Ticket Médio</p>
                   <div className="flex items-end gap-3">
-                     <h4 className="text-3xl font-bold text-slate-900">R$ 142,50</h4>
+                     <h4 className="text-3xl font-bold text-slate-900">Kz 14.250,00</h4>
                      <span className="text-red-600 font-bold mb-1 flex items-center text-sm">
                         <TrendingDown size={16} /> -2.4%
                      </span>
@@ -131,13 +130,13 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 h-80">
                <div className="flex justify-between items-center mb-6">
                   <h3 className="font-bold flex items-center gap-2">
-                     <LineChart className="text-blue-500" />
+                     <LineChartIcon className="text-blue-500" />
                      Projeção de Curva de Lucratividade
                   </h3>
                   <div className="flex gap-4">
                      <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
                         <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
-                        Simulação Atual
+                        Simulação Atual (Kz)
                      </div>
                   </div>
                </div>
@@ -147,7 +146,10 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                         <XAxis dataKey="step" hide />
                         <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
-                        <Tooltip contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}} />
+                        <Tooltip 
+                           formatter={(value: any) => [`Kz ${value.toLocaleString()}`, 'Lucro']}
+                           contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}} 
+                        />
                         <Line type="monotone" dataKey="profit" stroke="#2563eb" strokeWidth={4} dot={{r: 6, fill: '#2563eb', strokeWidth: 2, stroke: '#fff'}} activeDot={{r: 8}} />
                      </LineChart>
                   </ResponsiveContainer>
@@ -162,13 +164,13 @@ const BusinessIntelligence: React.FC<{ role: string | undefined }> = ({ role }) 
             title="Produtos Críticos (Loss Leaders)"
             description="Itens com margem negativa ou abaixo de 2% que não estão gerando fluxo cruzado."
             action="Revisar Fornecedor"
-            impact="- R$ 2.400/mês"
+            impact="- Kz 24.000/mês"
          />
          <InsightCard 
             title="Oportunidade de Pack"
             description="Clientes que compram Macarrão têm 72% de chance de comprar Molho de Tomate."
             action="Criar Promoção Conjunta"
-            impact="+ R$ 4.150/mês"
+            impact="+ Kz 41.500/mês"
          />
          <InsightCard 
             title="Otimização de Horários"

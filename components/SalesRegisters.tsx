@@ -9,15 +9,14 @@ import {
   FileText,
   AlertTriangle,
   CreditCard,
-  Banknote,
-  QrCode
+  Banknote
 } from 'lucide-react';
 
 const mockRegisters = [
-  { id: '1', name: 'Caixa 01 - Frente', status: 'OPEN', operator: 'João Silva', opened_at: '2023-11-20T08:00:00', current_cash: 1250.40 },
-  { id: '2', name: 'Caixa 02 - Frente', status: 'OPEN', operator: 'Maria Clara', opened_at: '2023-11-20T08:15:00', current_cash: 840.20 },
+  { id: '1', name: 'Caixa 01 - Frente', status: 'OPEN', operator: 'João Silva', opened_at: '2023-11-20T08:00:00', current_cash: 125000.40 },
+  { id: '2', name: 'Caixa 02 - Frente', status: 'OPEN', operator: 'Maria Clara', opened_at: '2023-11-20T08:15:00', current_cash: 84000.20 },
   { id: '3', name: 'Caixa 03 - Rápido', status: 'CLOSED', operator: null, opened_at: null, current_cash: 0 },
-  { id: '4', name: 'Caixa 04 - Rápido', status: 'OPEN', operator: 'Ricardo Souza', opened_at: '2023-11-20T10:00:00', current_cash: 450.00 },
+  { id: '4', name: 'Caixa 04 - Rápido', status: 'OPEN', operator: 'Ricardo Souza', opened_at: '2023-11-20T10:00:00', current_cash: 45000.00 },
 ];
 
 const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
@@ -28,7 +27,7 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold">Monitoramento de Caixas</h1>
-          <p className="text-slate-500">Acompanhamento em tempo real de operadores e numerário.</p>
+          <p className="text-slate-500">Acompanhamento em tempo real de operadores e numerário em Kwanzas.</p>
         </div>
         <button className="px-4 py-2 bg-slate-900 text-white rounded-lg flex items-center gap-2 hover:bg-slate-800">
            <Monitor size={18} />
@@ -70,7 +69,7 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
                 <div className="pt-4 border-t mt-4 flex justify-between items-end">
                    <div>
                       <p className="text-xs text-slate-400 uppercase font-bold">Em Dinheiro</p>
-                      <p className="text-xl font-bold text-slate-900">R$ {reg.current_cash.toFixed(2)}</p>
+                      <p className="text-xl font-bold text-slate-900">Kz {reg.current_cash.toLocaleString('pt-AO')}</p>
                    </div>
                    <button 
                     onClick={() => setSelectedRegister(reg)}
@@ -106,11 +105,11 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
                <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 bg-slate-50 rounded-xl border">
                     <p className="text-xs text-slate-500 font-bold uppercase mb-2">Esperado em Dinheiro</p>
-                    <p className="text-lg font-bold">R$ 1.250,40</p>
+                    <p className="text-lg font-bold">Kz {selectedRegister.current_cash.toLocaleString('pt-AO')}</p>
                   </div>
                   <div className="p-4 bg-slate-50 rounded-xl border">
                     <p className="text-xs text-slate-500 font-bold uppercase mb-2">Esperado em Cartões</p>
-                    <p className="text-lg font-bold">R$ 3.840,22</p>
+                    <p className="text-lg font-bold">Kz {(selectedRegister.current_cash * 3).toLocaleString('pt-AO')}</p>
                   </div>
                </div>
 
@@ -134,7 +133,7 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
                <div className="bg-amber-50 p-4 rounded-xl flex gap-3 border border-amber-200">
                   <AlertTriangle className="text-amber-600 flex-shrink-0" size={20} />
                   <p className="text-xs text-amber-800">
-                    O fechamento de caixa é uma operação <strong>crítica</strong> e <strong>definitiva</strong>. Qualquer divergência acima de R$ 5,00 será notificada automaticamente à gerência e impactará o score de risco do operador.
+                    O fechamento de caixa é uma operação <strong>crítica</strong> e <strong>definitiva</strong>. Qualquer divergência acima de Kz 500,00 será notificada automaticamente à gerência e impactará o score de risco do operador.
                   </p>
                </div>
 
@@ -175,7 +174,7 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
                   <tr className="hover:bg-slate-50">
                      <td className="py-4 font-medium text-slate-700">20/11 - 18:30</td>
                      <td className="py-4">Marta Lima</td>
-                     <td className="py-4 text-emerald-600 font-bold">R$ 0,00</td>
+                     <td className="py-4 text-emerald-600 font-bold">Kz 0,00</td>
                      <td className="py-4">
                         <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">CONCILIADO</span>
                      </td>
@@ -186,7 +185,7 @@ const SalesRegisters: React.FC<{ role: string | undefined }> = ({ role }) => {
                   <tr className="hover:bg-slate-50">
                      <td className="py-4 font-medium text-slate-700">20/11 - 17:45</td>
                      <td className="py-4">Carlos Abreu</td>
-                     <td className="py-4 text-red-600 font-bold">R$ -14,20</td>
+                     <td className="py-4 text-red-600 font-bold">Kz -1.420,00</td>
                      <td className="py-4">
                         <span className="px-2 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">DIVERGENTE</span>
                      </td>
