@@ -1,0 +1,7 @@
+{
+  "name": "GestorPro Retail - Sistema Administrativo",
+  "description": "Sistema completo de administração para varejo, com foco em BI, controle de estoque, antifraude e gestão financeira.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
