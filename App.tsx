@@ -7,6 +7,7 @@ import Auth from './components/Auth';
 import Dashboard from './components/Dashboard';
 import Inventory from './components/Inventory';
 import SalesRegisters from './components/SalesRegisters';
+import PDV from './components/PDV';
 import HRManagement from './components/HRManagement';
 import BusinessIntelligence from './components/BusinessIntelligence';
 import AuditHistory from './components/AuditHistory';
@@ -38,8 +39,7 @@ const App: React.FC = () => {
 
   const fetchProfile = async (userId: string) => {
     try {
-      // Simulation of profile fetching since we don't have the table yet
-      // In a real scenario: const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
+      // Perfil simulado para o admin
       const mockProfile: UserProfile = {
         id: userId,
         email: 'dono@loja.com',
@@ -57,8 +57,11 @@ const App: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-slate-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex h-screen items-center justify-center bg-slate-50 text-blue-600">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-current"></div>
+          <span className="font-bold animate-pulse">Iniciando GestorPro...</span>
+        </div>
       </div>
     );
   }
@@ -71,6 +74,7 @@ const App: React.FC = () => {
     switch (currentView) {
       case 'dashboard': return <Dashboard profile={profile} />;
       case 'inventory': return <Inventory role={profile?.role} />;
+      case 'pdv': return <PDV />;
       case 'sales': return <SalesRegisters role={profile?.role} />;
       case 'hr': return <HRManagement role={profile?.role} />;
       case 'bi': return <BusinessIntelligence role={profile?.role} />;
